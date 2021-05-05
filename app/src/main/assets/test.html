@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String Test</title>
+</head>
+
+<body>
+    <h1>String test.</h1>
+    <p>Press <a href="#" id="allocate_string">here</a> to allocate a 20mb string.</p>
+    <p>Press <a href="#" id="send_string">here</a> to send it to android.</p>
+</body>
+
+<script>
+        function randomString(length) {
+            let str = "";
+            for (let i = 0; i < length; i++) {
+                str = str + String.fromCharCode(97+Math.floor(Math.random() * 26));
+            };
+            return str;
+        }
+
+        const allocateButton = document.getElementById("allocate_string");
+        const sendButton = document.getElementById("send_string");
+
+        allocateButton.onclick = function() {
+            console.log("Allocating string");
+            const theString = randomString(20 * 1000000);
+            window.theString = theString;
+        };
+
+        sendButton.onclick = function() {
+            console.log("Sending string");
+            TestApp.sendString(window.theString);
+        };
+</script>
+</html>
